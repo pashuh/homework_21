@@ -8,7 +8,7 @@ public interface BrowserStackConfig extends Config {
     String login();
     @Key("password")
     String password();
-    @Key("apps")
+    @Key("app")
     String app();
 }
 
