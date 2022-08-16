@@ -1,7 +1,8 @@
 package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
-import credentials.CredentialsConfig;
+import credentials.BrowserStackConfig;
+import credentials.LocalConfig;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.MutableCapabilities;
@@ -16,7 +17,7 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
     @Override
     public WebDriver createDriver(Capabilities capabilities) {
 
-        CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class, System.getProperties());
+        BrowserStackConfig config = ConfigFactory.create(BrowserStackConfig.class, System.getProperties());
         String login = config.login();
         String password = config.password();
         String app = config.app();
@@ -25,7 +26,7 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
         mutableCapabilities.merge(capabilities);
         mutableCapabilities.setCapability("browserstack.user", login);
         mutableCapabilities.setCapability("browserstack.key", password);
-        mutableCapabilities.setCapability("app", app);
+        mutableCapabilities.setCapability("apps", app);
         mutableCapabilities.setCapability("device", "Samsung Galaxy S22");
         mutableCapabilities.setCapability("os_version", "12.0");
         mutableCapabilities.setCapability("project", "First Java Project");

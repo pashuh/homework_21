@@ -14,7 +14,8 @@ def allureVersion = "2.18.1",
 //    appiumVersion = "7.6.0",
     slf4jVersion = "1.7.32",
     junitVersion = "5.9.0",
-    ownerVersion = "1.0.12"
+    ownerVersion = "1.0.12",
+    commonsIoVersion = "2.11.0"
 
 allure {
     report {
@@ -38,6 +39,7 @@ dependencies {
             "io.qameta.allure:allure-rest-assured:$allureVersion",
             "io.appium:java-client:$appiumVersion",
             "org.slf4j:slf4j-simple:$slf4jVersion",
+            "commons-io:commons-io:$commonsIoVersion",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
             "org.aeonbits.owner:owner:$ownerVersion"
     )
@@ -56,5 +58,11 @@ tasks.withType(Test) {
             events "started", "skipped", "failed", "standard_error", "standard_out"
             exceptionFormat "short"
         }
+    }
+
+}
+task android(type: Test) {
+    useJUnitPlatform {
+        includeTags 'androidTest'
     }
 }
